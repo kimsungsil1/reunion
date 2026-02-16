@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>재회 가능성 계산기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <h1>재회 가능성 계산기</h1>
+      <button id="themeToggle" class="chip-btn" type="button" aria-label="다크모드 전환">🌙 다크모드</button>
+    </header>
+
+    <main class="container" id="app" aria-live="polite">
+      <section class="card" id="surveyCard">
+        <div class="progress-wrap" aria-label="진행 상태">
+          <div class="progress-meta">
+            <span id="progressText">현재 20 중 1</span>
+            <span id="saveStatus" class="muted">자동저장됨</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1" aria-labelledby="progressText">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div id="questionStage" class="question-stage">
+          <article class="question-panel" id="questionPanel">
+            <h2 id="questionTitle"></h2>
+            <label id="answerLabel" for="answerInput">답변</label>
+            <textarea
+              id="answerInput"
+              rows="7"
+              placeholder="여기에 솔직하게 작성해보세요."
+              autocomplete="off"
+            ></textarea>
+            <p id="hintText" class="hint"></p>
+            <p id="softWarning" class="soft-warning" aria-live="polite"></p>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="backBtn" class="ghost">Back</button>
+          <button type="button" id="nextBtn" class="primary">Next</button>
+        </div>
+      </section>
+
+      <section class="card hidden" id="summaryCard" aria-hidden="true">
+        <h2>전체 답변 요약 (제목만)</h2>
+        <ol id="summaryList" class="summary-list"></ol>
+        <div class="actions stacked-mobile">
+          <button type="button" id="summaryBackBtn" class="ghost">질문으로 돌아가기</button>
+          <button type="button" id="showResultBtn" class="primary">결과 보기</button>
+        </div>
+      </section>
+
+      <section class="card hidden" id="resultCard" aria-hidden="true">
+        <h2>결과</h2>
+        <div class="score-box">
+          <p class="muted">엔터테인먼트/자기성찰 지표</p>
+          <p class="score" id="scoreValue">0%</p>
+          <p class="score-label" id="levelLabel">-</p>
+        </div>
+
+        <article class="interpret-card" id="interpretCard"></article>
+
+        <div class="grid-2">
+          <article class="sub-card">
+            <h3>너의 강점</h3>
+            <ul id="strengthList"></ul>
+          </article>
+          <article class="sub-card">
+            <h3>리스크</h3>
+            <ul id="riskList"></ul>
+          </article>
+        </div>
+
+        <article class="sub-card">
+          <h3>다음 7일 행동 3개</h3>
+          <ul id="nextActions" class="checklist"></ul>
+        </article>
+
+        <article class="sub-card">
+          <h3>재회 주파수</h3>
+          <div class="video-wrap">
+            <iframe
+              id="frequencyVideo"
+              title="재회 주파수 영상"
+              src=""
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <a id="videoOpenLink" class="chip-btn inline-link" target="_blank" rel="noopener noreferrer">새 창으로 듣기</a>
+        </article>
+
+        <article class="sub-card product">
+          <h3>재회 확률을 올려주는 부적</h3>
+          <img src="https://via.placeholder.com/960x540.png?text=%EB%B6%80%EC%A0%81+%EC%9D%B4%EB%AF%B8%EC%A7%80" alt="부적 상품 이미지" />
+          <p class="price">₩19,900</p>
+          <p>관계를 바꿔주는 마법 아이템이 아니라, 마음을 다잡고 행동을 유지하도록 돕는 상징 아이템입니다.</p>
+          <ul>
+            <li>✓ 하루 루틴 리마인더 카드 포함</li>
+            <li>✓ 자기성찰 질문 미니북 PDF 제공</li>
+            <li>✓ 과장 없는 의미 중심 구성</li>
+          </ul>
+          <a id="buyAmuletBtn" class="primary block-link" target="_blank" rel="noopener noreferrer">구매하러 가기</a>
+          <div class="faq">
+            <h4>FAQ</h4>
+            <details><summary>정말 재회를 보장하나요?</summary><p>아니요. 보장하지 않으며, 마음과 행동을 정리하는 상징적 도구입니다.</p></details>
+            <details><summary>누구에게 추천하나요?</summary><p>감정 기복이 큰 시기에 루틴을 만들고 싶은 분께 적합합니다.</p></details>
+            <details><summary>효과가 없다고 느끼면요?</summary><p>개인차가 있으며, 상담/코칭 등 실질적 도움과 병행하는 것을 권합니다.</p></details>
+          </div>
+          <p class="notice">고지: 개인차가 있으며 결과를 보장하지 않습니다. 심리적 도움과 의미 부여를 위한 구성입니다.</p>
+        </article>
+
+        <div class="actions stacked-mobile">
+          <button id="shareResultBtn" class="ghost" type="button">결과만 공유</button>
+          <button id="resetBtn" class="primary" type="button">처음부터 다시</button>
+        </div>
+
+        <footer class="footer-note">
+          <p>이 서비스는 오락 및 자기성찰을 위한 참고용입니다. 실제 결과를 보장하지 않습니다.</p>
+          <p>개인정보 안내: 답변은 브라우저(localStorage)에만 저장되며 서버로 전송되지 않습니다.</p>
+          <p id="storageWarning" class="storage-warning hidden" role="alert"></p>
+        </footer>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
